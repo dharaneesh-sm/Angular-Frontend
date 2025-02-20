@@ -1,0 +1,37 @@
+<div>
+    <h2>Product Management</h2>
+    <input type="text" [(ngModel)]="searchText" placeholder="Search Product">
+    <!-- <div>
+        <input type="text" [(ngModel)]="newProduct.name" placeholder="Name">
+        <input type="text" [(ngModel)]="newProduct.description" placeholder="Description">
+        <input type="number" [(ngModel)]="newProduct.price" placeholder="Price">
+        <input type="text" [(ngModel)]="newProduct.category" placeholder="Category">
+        <button (click)="addProduct()" class="add">Add Product</button>
+    </div> -->
+
+    <div>
+      <h3>{{selectProduct ? 'Update Product' : 'Add Product'}}</h3>
+      <form [formGroup]="Products" (submit)="onSumbit()">
+        <label>Name</label>
+        <input type="text" formControlName="name">
+        <label>Description</label>
+        <input type="text" formControlName="description">
+        <label>Price</label>
+        <input type="number" formControlName="price">
+        <label>Category</label>
+        <input type="text" formControlName="category">
+        <button type="submit">{{ selectProduct ? 'Update Product' : 'Add Product'}}</button>
+      </form>
+    </div>
+
+    <ul>
+        <ng-container *ngFor="let product of products; let i = index">
+          <li *ngIf="product.name.includes(searchText)">
+            <b>{{ product.name }}</b>{{ product.description }} <b>₹{{ product.price }}</b>
+            <button (click)="deleteProduct(product._id)" class="delete">Delete</button>
+            <button (click)="updateProduct(product)">Update</button>
+          </li>
+        </ng-container>
+    </ul>
+    
+</div>

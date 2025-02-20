@@ -1,8 +1,13 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+// import { provideRouter, Route } from '@angular
+import { provideHttpClient } from '@angular/common/http';
+import { ProductComponent } from '../product/product.component';
 
-import { routes } from './app.routes';
+// const routes: Route = [
+//   { path: '', component: Home},
+//   { path: 'manage', component: ProductComponent};
+// ]
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideHttpClient()]
 };
