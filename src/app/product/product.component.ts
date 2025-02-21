@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,6 +12,7 @@ import { ProductService } from './product.service';
 })
 
 export class ProductComponent implements OnInit {
+  private router = inject(Router);
   products: any[] = [];
   searchText: string = '';
   // newProduct = { name: '', description: '', price: 0, category: '' };
@@ -77,7 +79,9 @@ export class ProductComponent implements OnInit {
         })
     }
   }
-
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
   // addProduct() {
   //   if (this.newProduct.name && this.newProduct.price) {
   //     this.productService.addProduct(this.newProduct).subscribe((product) => {

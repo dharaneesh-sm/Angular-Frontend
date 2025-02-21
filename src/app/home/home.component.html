@@ -1,0 +1,20 @@
+<div>
+    <h2>Product Management</h2>
+    
+    <input type="text" [(ngModel)]="searchText" placeholder="Search Product">
+  
+    <button (click)="goToManagePage()">Manage Products</button>
+  
+    <ul>
+      <ng-container *ngFor="let product of products">
+        <li *ngIf="product.name.includes(searchText)">
+          <b>{{ product.name }}</b> 
+          <br><br>
+          {{ product.description }}
+          <br> 
+          <b>₹{{ product.price }}</b>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  

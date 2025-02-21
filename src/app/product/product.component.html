@@ -1,0 +1,73 @@
+<h2>Product Management</h2>
+<button (click)="navigateToHome()" class="home">Go to Home</button>
+<div class="container">
+  <div class="form-container">
+    <h3>{{selectProduct ? 'Update Product' : 'Add Product'}}</h3>
+    <form [formGroup]="Products" (submit)="onSumbit()">
+      <label>Name</label>
+      <input type="text" formControlName="name" placeholder="Name">
+      <label>Description</label>
+      <input type="text" formControlName="description" placeholder="Description">
+      <label>Price</label>
+      <input type="number" formControlName="price" placeholder="Price">
+      <label>Category</label>
+      <input type="text" formControlName="category" placeholder="Category">
+      <button type="submit" class="add">{{ selectProduct ? 'Update Product' : 'Add Product'}}</button>
+    </form>
+  </div>
+
+  <!-- <input type="text" [(ngModel)]="searchText" placeholder="Search Product" class="search"> -->
+  <table class="table-container" border="1" >
+    <tr>
+      <th>Product Name</th>
+      <th>Product Description</th>
+      <th>Product Price</th>
+      <th>Actions</th>
+    </tr>
+    <tr ng-container *ngFor="let product of products; let i = index">
+      <td >{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>₹{{ product.price }}</td>
+      <td>
+        <button (click)="deleteProduct(product._id)" class="delete">Delete</button>
+        <button (click)="updateProduct(product)" class="update">Update</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Product Description</th>
+          <th>Product Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>₹{{ product.price }}</td>
+          <td>
+            <button (click)="deleteProduct(product._id)" class="delete">Delete</button>
+            <button (click)="updateProduct(product)">Update</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+  
+
+  <!-- <ul>
+        <ng-container *ngFor="let product of products; let i = index">
+          <li *ngIf="product.name.includes(searchText)">
+            <b>{{ product.name }}</b>{{ product.description }} <b>₹{{ product.price }}</b>
+            <button (click)="deleteProduct(product._id)" class="delete">Delete</button>
+            <button (click)="updateProduct(product)">Update</button>
+          </li>
+        </ng-container>
+    </ul> -->
+
+</div>
